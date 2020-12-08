@@ -12,7 +12,7 @@ class TagView(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     
-    @action(methods=['GET','POST','DELETE'], detail=True)
+    @action(methods=['GET'], detail=True)
     def publications(self, req, pk=None):
         
         tag = self.get_object()

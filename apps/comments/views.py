@@ -21,21 +21,3 @@ class CommentsView(viewsets.ModelViewSet):
             
             serializer = PublicationSerializer(comment.publications)
             return Response(status = status.HTTP_200_OK, data = serializer.data)
-        
-        if req.method in ['POST', 'DELETE']:
-            
-            tags_id = req.data['tags']
-            
-            for tag_id in tags_id:
-                
-                publication = Publication.objects.get(id=int(tag_id))
-                
-                if req.method == 'POST':
-                    
-                    comment.publications.add(publication)
-                    return Response(status = status.HTTP_201_CREATED)
-                    
-                if req.method == 'DELETE':
-                    
-                    comment.publications.remove(publication)
-                    return Response(status = status.HTTP_204_NO_CONTENT)
