@@ -13,11 +13,11 @@ class CommentsView(viewsets.ModelViewSet):
     serializer_class =CommentSerializer
 
     @action(methods=['GET','POST','DELETE'], detail=True)
-    def publications(self, req, pk=None):
+    def publication(self, req, pk=None):
         
         comment = self.get_object()
         
         if req.method == 'GET':
             
-            serializer = PublicationSerializer(comment.publications)
+            serializer = PublicationSerializer(comment.publication)
             return Response(status = status.HTTP_200_OK, data = serializer.data)
